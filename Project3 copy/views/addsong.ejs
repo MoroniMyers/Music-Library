@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Song</title>
+        <!--styling (professionalism)-->
+        <style>
+            input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                background-color: #ffffff;
+                color: rgb(0, 0, 0);
+                padding: 7px 15px;
+                margin-top: 15px;
+                text-align: center;
+                display: inline-block;
+                cursor: pointer;
+                border: 1px solid black;
+                border-radius: 5px;
+            }
+
+            input[type=submit]:hover {
+                background-color: rgb(220, 220, 220);
+            }
+
+            div {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+
+            #title {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #table {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!--Image and Page Header-->
+        <h1 id="title"><img src="https://static.thenounproject.com/png/2942439-200.png" alt="Italian Trulli" style="width:60px;height:60px;">Add Song</h1>
+        <!--Create table to add song-->
+        <form id="form" action="\addSong" method="post">
+            <!--Builds table that enables you to add a song-->
+            <table id="table">
+                <br>
+                <tr>
+                    <td>
+                        <label for="title">Enter Song Title: </label>
+                    </td>
+                    <td>
+                        <input id="title" type="text" name="title" autofocus>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="artist">Enter Artist Name: </label>
+                    </td>
+                    <td>
+                        <input id="artist" type="text" name="artist">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="releaseYear">Enter Release Year: </label>
+                    </td>
+                    <td>
+                        <input id="releaseYear" type="text" name="releaseYear">
+                    </td>
+                </tr>
+            </table>
+                <br>
+                <!--Creates button to save-->
+                <input type="submit" value="Save">
+        </form>
+        <br>
+        <!--Creates button to cancel, sends us to root page-->
+        <form action="\"><input type="submit" value="Cancel"></form>
+    </body>
+</html>

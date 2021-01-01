@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">             
+        <title>Update Song</title>
+        <!--styling (professionalism)-->
+        <style>
+            input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                background-color: #ffffff;
+                color: rgb(0, 0, 0);
+                padding: 7px 15px;
+                margin-top: 15px;
+                text-align: center;
+                display: inline-block;
+                cursor: pointer;
+                border: 1px solid black;
+                border-radius: 5px;
+            }
+
+            input[type=submit]:hover {
+                background-color: rgb(220, 220, 220);
+            }
+
+            div {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+
+            #title {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #table {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <!--Image and Page Header-->
+        <h1 id="title"><img src="https://www.pngkey.com/png/full/0-5198_edit-pencil-png-pencil-edit-logo.png" alt="Italian Trulli" style="width:50px;height:50px;"> Update Song Info</h1>
+        <!--Create a Form for editsong-->
+        <form action="/editSong" method="POST">
+            <!--Create a table-->
+            <table id="table">
+                <!--Logs the song in the console-->
+                <%console.log("Song: ", song);%>
+                <!--Generates the form that makes edits possible;
+                hide the id value-->
+                <input type="hidden" name="id" value="<%=song[0].id%>">            
+                <tr>
+                    <td>
+                        <label for="songTitle">Song Title: </label>
+                    </td>
+                    <td>
+                        <input id="songTitle" type="text" name="title" value="<%=song[0].title%>" autofocus>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="artistName">Artist Name: </label>
+                    </td>
+                    <td>
+                        <input id="artistName" type="text" name="artist" value="<%=song[0].artist%>">
+                    </td>
+                </tr>  
+                <tr>
+                    <td>
+                        <label for="releaseYear">Release Year: </label>
+                    </td>
+                    <td>
+                        <input id="releaseYear" type="text" name="releaseYear" value="<%=song[0].releaseYear%>">
+                    </td>
+                </tr>  
+            <br> 
+        </table>
+            <br>
+            <!--Creates a Save button-->
+            <input type="submit" value="Save">                 
+        </form>
+        <br>
+        <!--Creates a cancel button-->
+        <form action="\"><input type="submit" value="Cancel"></form>
+    </body>
+</html>

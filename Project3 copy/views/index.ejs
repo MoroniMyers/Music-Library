@@ -1,0 +1,131 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> table {font-size: large;}</style>
+    <title>Songs Table</title>
+    <!--styling (professionalism)-->
+    <style>
+        #songs {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        #songs td, #songs th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        #songs tr:nth-child(even){background-color: #ddd;}
+        
+        #songs tr:hover {background-color: rgb(206, 206, 206);}
+        
+        #songs th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #103674;
+            color: white;
+        }
+
+        #songs td {
+            text-align: center;
+        }
+
+        .button {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 7px 15px;
+            margin-top: 15px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: rgb(220, 220, 220);
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <% {console.log("listing songs: " + songList.length);} %>
+    <table id="songs">
+        <!--Creates the Table Headers-->
+        <thead>
+            <tr>
+                <!--Creates the add song button-->
+                <th>
+                    <form method="GET" action="\addSong">
+                        <input type="submit" class="button" value="Add Song">
+                    </form>
+                </th>
+                <th >Title</th>
+                <th >Artist</th>
+                <th >Release Year</th>
+                <th>
+                    <!--Creates a start over button-->
+                    <form action="/startOver" method="post" id="startOver" name="startOver">
+                        <input type="button" class="button" name="startOver" value="Start Over" 
+                            onclick="safeStartOver('startOver')">
+                    </form>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Loop to populate page with database information-->
+            <% for(var i=0;i<songList.length;i++) { %>
+                <tr>
+                    <td>
+                        <!--Creates the delete button-->
+                        <form action="/deleteSong/<%= songList[i].id %>"
+                            method="post" id="deleteSong<%=songList[i].id%>" 
+                            name="deleteSong<%=songList[i].id%>">
+                            <input type="button" class="button" name="Delete" 
+                                value="Delete" onclick="safeDelete('deleteSong<%=songList[i].id%>')">
+                        </form>
+                    </td>
+                    <!--populates the column information from the database-->
+                    <td><%= songList[i].title %></td>
+                    <td><%= songList[i].artist %></td>
+                    <td><%= songList[i].releaseYear %></td>
+                    <td>
+                        <!--Creates the edit button-->
+                        <form action="/editSong/<%= songList[i].id %>"  
+                            method="get" id="editSong" name="editSong">
+                            <input type="submit" class="button" name="Edit" value="Edit">
+                        </form>
+                    </td>
+                </tr>
+            <%}%>    
+        </tbody>
+    </table>
+​
+    </div>
+​
+    <script>
+        //creates a safety question popup before deleting
+        function safeDelete(deleteSong) {
+            console.log("passed to safeDelete: " + deleteSong);
+            let yesNo = confirm("Are you sure?");
+            if (yesNo === true) {
+                console.log("submitting delete: " + deleteSong);
+                document.forms[deleteSong].submit();
+            }
+        }
+
+        //creates a safety question popup before starting over
+        function safeStartOver(startOver) {
+            console.log("passed to safeDelete: " + startOver);
+            let yesNo = confirm("Are you sure you want to reset the data?");
+            if (yesNo === true) {
+                console.log("submitting start over: " + startOver);
+                document.forms[startOver].submit();
+            }
+        }
+    </script>
+</body>
+</html>
